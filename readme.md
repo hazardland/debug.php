@@ -9,6 +9,10 @@ Example of debug call html output:
 
 ![](./demo/php-debug.png)
 
+Or
+
+![](./demo/php-visually-debug-array.png)
+
 Let us have an example classes (check ./demo/demo.php)
 ```php
 	class test1
@@ -75,8 +79,16 @@ Putting title on debug:
 
 To have both expanded and titled debug we should just put * symbol in the begining of title string like this:
 ```php
-	$hm = array (1=>array(2=>array(3=>array(4=>array(5=>array(6=>array(7=>array(8))))))));
+	$hm = array (1=>array(2=>array(3=>array(4=>array(5=>array(6=>array(7=>array(8=>"Last depth we created"))))))));
 	debug ($hm, "* A very complicated expanded array");
 ```
 
 ![](./demo/php-visually-debug-array.png)
+
+On a depth level 6 (considering starting level is 0) only ... is visible because of depth rendering limit which is by default 6. To unlock other levels we should incrase limit.
+
+```php
+debug ($hm, "* More levels", false, 10);
+```
+
+![](./demo/php-visually-debug-array-full.png)
