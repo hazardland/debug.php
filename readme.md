@@ -118,3 +118,10 @@ object (test2)
             enough : "Level 4"
 
 ```
+
+To log plain text output in file just pass file path as a third parameter
+```php
+debug ($test, date('Y-m-d H:i:s').": Save plain text to file ", "./test.log");
+```
+
+![](./demo/php-log-variable.png)

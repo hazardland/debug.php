@@ -307,17 +307,20 @@
         }
         if ($plain)
         {
+            $header = '';
             if ($title)
             {
-                echo (is_bool($title) || $title===nulll)?$type:$title."\n-------------------\n";
+                $header = "--------------------------------------\n";
+                $header .= (is_bool($title) || $title===null)?$type:$title;
+                $header .= "\n--------------------------------------\n";
             }
             if (is_string($plain))
             {
-                file_put_contents ($plain, $result);
+                file_put_contents ($plain, $header.$result, FILE_APPEND);
             }
             else
             {
-                echo $result;
+                echo $header.$result;
             }
         }
         else

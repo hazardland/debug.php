@@ -49,7 +49,7 @@
 	debug ($test, "Output as plain text", true);
 	echo "</pre>";
 
-	//debug ($test, "Save plain text to file", "./test.log");
+	debug ($test, date('Y-m-d H:i:s').": Save plain text to file ", "./test.log");
 
 	debug ($test, "Limit level rendering to 1", false, 1);
 
