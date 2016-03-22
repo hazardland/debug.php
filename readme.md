@@ -125,3 +125,7 @@ debug ($test, date('Y-m-d H:i:s').": Save plain text to file ", "./test.log");
 ```
 
 ![](./demo/php-log-variable.png)
+
+And lastly if you are using subl-protocol plugin for sublime (https://github.com/thecotne/subl-protocol) you can unfold debug backtrace and with one click in browser jump on the specific file and line in sublime text editor:
+
+![](./demo/php-debug-sublime-protocol.png)
