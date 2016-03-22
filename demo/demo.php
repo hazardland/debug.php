@@ -1,6 +1,6 @@
 <?php
 
-	include './debug.php';
+	include '../debug.php';
 
 	class test1
 	{

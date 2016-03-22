@@ -7,7 +7,7 @@ function debug (mixed $object, string/boolean $title=null, boolean/string $plain
 
 Example of debug call html output:
 
-![](./php-debug.png)
+![](./demo/php-debug.png)
 
 Let us have an example classes (check ./demo.php)
 ```php
@@ -54,4 +54,14 @@ Now let us start debugging **$test1**. A simpliest call:
 ```
 Will output following:
 
-![](./php-debug-object.png)
+![](./demo/php-debug-object.png)
+
+Note that object of class *test3* is collapsed and only first property is visible you can unfold it by clicking + or you can just debug object with everything expanded by calling:
+
+```php
+	debug ($test, true);
+```
+So now we see hidden parts of our object by default
+
+![](./demo/php-debug-expanded.png)
+
