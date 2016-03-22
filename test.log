@@ -1,0 +1,14 @@
+string : "Test string"
+boolean : true
+integer : 17
+float : 9.99
+array (array)
+    bob : "alice"
+    1 : 5
+    2 : 1.4
+object (test2)
+    another (test3)
+        string1 : "3d level"
+        string2 : "123"
+        complicated (test4)
+            enough : "Level 4"

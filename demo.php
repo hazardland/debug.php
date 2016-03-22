@@ -1,16 +1,7 @@
-function debug ($object)
-================
+<?php
 
-function debug (mixed $object, string/boolean $title=null, boolean/string $plain=false, integer $limit=6)
+	include './debug.php';
 
-**debug** is a single function for visually analything / logging complex deep level objects and arrays.
-
-Example of debug call html output:
-
-![](./php-debug.png)
-
-Let us have an example classes (check ./demo.php)
-```php
 	class test1
 	{
 		public $string = "Test string";
@@ -38,19 +29,28 @@ Let us have an example classes (check ./demo.php)
 		public $enough = "Level 4";
 		public $something = "Thanks for the fish!";
 	}
-```
 
-And intialize them in a following manner:
-```php
 	$test = new test1 ();
 	$test->object = new test2();
 	$test->object->another = new test3 ();
 	$test->object->another->complicated = new test4 ();
-```
 
-Now let us start debugging **$test1**. A simpliest call:
-```php
 	debug ($test);
-```
-Will output following:
-![](./php-debug-object.png)
+
+	debug ($test, "This is debug title");
+
+	//Expand all levels while default expanded level depth is 2
+	debug ($test, true);
+
+	//Add * before title to expand all levels with title
+	debug ($test, "* Expand all levels with title");
+
+	echo "<pre>";
+	debug ($test, "Output as plain text", true);
+	echo "</pre>";
+
+	//debug ($test, "Save plain text to file", "./test.log");
+
+	debug ($test, "Limit level rendering to 1", false, 1);
+
+?>
