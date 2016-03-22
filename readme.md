@@ -92,3 +92,29 @@ debug ($hm, "* More levels", false, 10);
 ```
 
 ![](./demo/php-visually-debug-array-full.png)
+
+Third parameter is for plain text output if you pass *true*
+```php
+debug ($test, "Output something as plain text", true);
+```
+It will output something like following indented with 4 space tabs:
+
+```php
+Output something as plain text
+-------------------
+string : "Test string"
+boolean : true
+integer : 17
+float : 9.99
+array (array)
+    bob : "alice"
+    1 : 5
+    2 : 1.4
+object (test2)
+    another (test3)
+        string1 : "3d level"
+        string2 : "123"
+        complicated (test4)
+            enough : "Level 4"
+
+```
