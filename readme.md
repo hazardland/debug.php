@@ -63,5 +63,5 @@ Note that object of class *test3* is collapsed and only first property is visibl
 ```
 So now we see hidden parts of our object by default
 
-![](./demo/php-debug-expanded.png)
+![](./demo/php-debug-object-expand.png)
 
