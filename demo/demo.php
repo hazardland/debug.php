@@ -53,4 +53,7 @@
 
 	debug ($test, "Limit level rendering to 1", false, 1);
 
+	$pi = 3.14159265359;
+	debug ($pi, "hello this is pi");
+
 ?>

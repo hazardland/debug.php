@@ -9,7 +9,7 @@ Example of debug call html output:
 
 ![](./demo/php-debug.png)
 
-Let us have an example classes (check ./demo.php)
+Let us have an example classes (check ./demo/demo.php)
 ```php
 	class test1
 	{
@@ -65,3 +65,10 @@ So now we see hidden parts of our object by default
 
 ![](./demo/php-debug-object-expand.png)
 
+Putting title on debug:
+```php
+	$pi = 3.14159265359;
+	debug ($pi, "hello this is pi");
+```
+
+![](./demo/php-debug-pi.png)
