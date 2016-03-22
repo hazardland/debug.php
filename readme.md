@@ -53,4 +53,5 @@ Now let us start debugging **$test1**. A simpliest call:
 	debug ($test);
 ```
 Will output following:
+
 ![](./php-debug-object.png)
