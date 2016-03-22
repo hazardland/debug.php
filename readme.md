@@ -72,3 +72,9 @@ Putting title on debug:
 ```
 
 ![](./demo/php-debug-pi.png)
+
+To have both expanded and titled debug we should just put * symbol in the begining of title string like this:
+```php
+	$hm = array (1=>array(2=>array(3=>array(4=>array(5=>array(6=>array(7=>array(8))))))));
+	debug ($hm, "* A very complicated expanded array");
+```
