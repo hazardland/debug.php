@@ -1,0 +1,23 @@
+{
+    "name": "hazardland/debug",
+    "type": "library",
+    "description": "php variable debug",
+    "keywords": ["debug"],
+    "homepage": "http://github.com/hazardland/debug.php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hazardland",
+            "email": "hazardland@gmail.com",
+            "homepage": "http://hazardland.com",
+            "role": "Developer"
+        }
+    ],
+    "require":
+    {
+        "php": ">=5.4.21"
+    },
+    "autoload": {
+        "files": ["debug.php"]
+    }
+}
