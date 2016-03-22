@@ -79,4 +79,4 @@ To have both expanded and titled debug we should just put * symbol in the begini
 	debug ($hm, "* A very complicated expanded array");
 ```
 
-![](./demo/php-visually-debug-pi.png)
+![](./demo/php-visually-debug-array.png)
