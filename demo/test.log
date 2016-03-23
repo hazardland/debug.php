@@ -34,3 +34,39 @@ object (test2)
         complicated (test4)
             enough : "Level 4"
             something : "Thanks for the fish!"
+--------------------------------------
+2016-03-23 02:37:03: Save plain text to file 
+--------------------------------------
+string : "Test string"
+boolean : true
+integer : 17
+float : 9.99
+array (array)
+    bob : "alice"
+    1 : 5
+    2 : 1.4
+object (test2)
+    another (test3)
+        string1 : "3d level"
+        string2 : "123"
+        complicated (test4)
+            enough : "Level 4"
+            something : "Thanks for the fish!"
+--------------------------------------
+2016-03-23 02:37:06: Save plain text to file 
+--------------------------------------
+string : "Test string"
+boolean : true
+integer : 17
+float : 9.99
+array (array)
+    bob : "alice"
+    1 : 5
+    2 : 1.4
+object (test2)
+    another (test3)
+        string1 : "3d level"
+        string2 : "123"
+        complicated (test4)
+            enough : "Level 4"
+            something : "Thanks for the fish!"

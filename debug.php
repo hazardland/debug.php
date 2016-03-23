@@ -115,7 +115,7 @@
                     {
                         if ($plain)
                         {
-                            $resul .= "null";
+                            $result .= "null";
                         }
                         else
                         {
@@ -202,7 +202,7 @@
             {
                 if ($plain)
                 {
-                    $resul = "null";
+                    $result = "null";
                 }
                 else
                 {
