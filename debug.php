@@ -24,15 +24,17 @@
 
     function debug ($object, $title=null, $plain=false, $limit=6, $level=0)
     {
+        if (defined('debug') && !(debug==$_SERVER['REMOTE_ADDR'] || strpos(debug,$_SERVER['REMOTE_ADDR'].',')===0 || strpos(debug,','.$_SERVER['REMOTE_ADDR'].',')!==false || strpos(debug,','.$_SERVER['REMOTE_ADDR'])===strlen(debug)-strlen($_SERVER['REMOTE_ADDR'])-1))
+        {
+
+            return;
+        }
+        $result = '';
         static $charset;
         if ($charset===null && !$plain)
         {
             echo "<meta charset=\"utf-8\">\n";
             $charset = true;
-        }
-        if (defined('ip') && !in(ip,$_SERVER['REMOTE_ADDR']))
-        {
-            return;
         }
         if ($level>$limit)
         {
@@ -265,7 +267,7 @@
                 }
                 else
                 {
-                    $result .= "\"".htmlspecialchars ($object,ENT_NOQUOTES,'UTF-8')."\"";
+                    $result = "\"".htmlspecialchars ($object,ENT_NOQUOTES,'UTF-8')."\"";
                 }
             }
             if ($plain)
@@ -287,7 +289,7 @@
         }
         else if (is_object($object))
         {
-            $type = 'object';
+            $type = get_class($object);
         }
         else if (is_array($object))
         {
@@ -331,7 +333,14 @@
             $debug = "<div>";
             foreach ($trace as $key => $value)
             {
-                $debug .= "<a href='subl://".str_replace('\\','/',$value['file']).":".$value['line']."' style='color:black;text-decoration:none;'>".$value['file']."</a> [".$value['line']."] <font color=maroon>".$value['function']."</font><br>";
+                if (isset($value['file']) && $value['line'])
+                {
+                    $debug .= "<a href='subl://".str_replace('\\','/',$value['file']).":".$value['line']."' style='color:black;text-decoration:none;'>".$value['file']."</a> [".$value['line']."] <font color=maroon>".$value['function']."</font><br>";
+                }
+                else
+                {
+                    $debug .= "<font color=maroon>".$value['function']."</font><br>";
+                }
             }
             $debug .= "</div>";
             echo "<div style='box-shadow: 5px 5px 5px #888888;background:#f1f1f1;z-index:9999;position:relative;font-family:dejavu sans mono;font-size:12px;line-height:normal!important;width:550px;border:1px solid grey;padding:3px;margin:10px;'>\n";
