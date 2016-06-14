@@ -9,6 +9,10 @@ Example of debug call html output:
 
 ![](./demo/php-debug.png)
 
+Example of cli mode output
+
+![](./demo/php-cli-debug.png)
+
 Or
 
 ![](./demo/php-visually-debug-array.png)
