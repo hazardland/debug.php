@@ -22,16 +22,92 @@
     THE SOFTWARE.
 */
 
+    /*
+        CHANGELOG
+
+        version 1.2
+        ----------------
+        colorized output in php-cli mode
+        added default plain text output in php-cli mode
+
+        version 1.1
+        ----------------
+        fixed notices
+        debug constant - comma separated list of allowed ip adresses to debug for (if defined)
+    */
+
+    /*
+        HINTS
+
+        $title parameter
+        --------------
+        null/false - no title
+        true - variable type as title
+        "string" - custom title
+        
+        $plain parameter
+        --------------
+        false - html output (default)
+        true - plain text output (default in command line mode)
+        "/path/to/file" - file output by append using plain mode
+
+        debug constant
+        --------------
+        if defined comma separated list of allowed ip adresses to debug for
+        !defined('debug') - debug for everyone
+        const debug = '127.0.0.1,217.07.01.01'; - only clients from this two ips will see debug
+    */
+
     function debug ($object, $title=null, $plain=false, $limit=6, $level=0)
     {
-        if (php_sapi_name()==='cli')
-        {
-            $plain = true;
-        }
         if (defined('debug') && !(debug==$_SERVER['REMOTE_ADDR'] || strpos(debug,$_SERVER['REMOTE_ADDR'].',')===0 || strpos(debug,','.$_SERVER['REMOTE_ADDR'].',')!==false || strpos(debug,','.$_SERVER['REMOTE_ADDR'])===strlen(debug)-strlen($_SERVER['REMOTE_ADDR'])-1))
         {
 
             return;
+        }
+        if ($plain===false && php_sapi_name()==='cli')
+        {
+            $plain = true;
+        }        
+        if (is_string($plain))
+        {
+            $color_black = "";
+            $color_black_light = "";
+            $color_red = "";
+            $color_red_light = "";
+            $color_green = "";
+            $color_green_light = "";
+            $color_yellow = "";
+            $color_yellow_light = "";
+            $color_blue = "";
+            $color_blue_light = "";
+            $color_purple = "";
+            $color_purple_light = "";
+            $color_cyan = "";
+            $color_cyan_light = "";
+            $color_gray = "";
+            $color_gray_light = "";
+            $color_clear = "";
+        }
+        else if ($plain===true)
+        {
+            $color_black = "\33[0;30m";
+            $color_black_light = "\33[1;30m";
+            $color_red = "\33[0;31m";
+            $color_red_light = "\33[1;31m";
+            $color_green = "\33[0;32m";
+            $color_green_light = "\33[1;32m";
+            $color_yellow = "\33[1;33m";
+            $color_yellow_light = "\33[0;33m";
+            $color_blue = "\33[0;34m";
+            $color_blue_light = "\33[1;34m";
+            $color_purple = "\33[0;35m";
+            $color_purple_light = "\33[1;35m";
+            $color_cyan = "\33[0;36m";
+            $color_cyan_light = "\33[1;36m";
+            $color_gray = "\33[0;37m";
+            $color_gray_light = "\33[1;37m";
+            $color_clear = "\033[0;39m";
         }
         $result = '';
         static $charset;
@@ -51,7 +127,7 @@
                 return "...";
             }
         }
-        if (is_object($object) || is_array($object))
+        if (is_object($object) || (is_array($object) && count($object)>0))
         {
             foreach ($object as $key => $value)
             {
@@ -65,7 +141,7 @@
                     {
                         $result .= "<span style='background:silver;padding-left:2px;padding-right:2px;'>".$key.'</span>';
                     }
-                    else
+                else
                     {
                         $result .= '<span>'.$key.'</span>';
                     }
@@ -121,7 +197,7 @@
                     {
                         if ($plain)
                         {
-                            $result .= "null";
+                            $result .= $color_cyan."null".$color_clear;
                         }
                         else
                         {
@@ -134,7 +210,7 @@
                         {
                             if ($plain)
                             {
-                                $result .= "true";
+                                $result .= $color_purple_light."true".$color_clear;
                             }
                             else
                             {
@@ -146,7 +222,7 @@
                         {
                             if ($plain)
                             {
-                                $result .= "false";
+                                $result .= $color_purple_light."false".$color_clear;
                             }
                             else
                             {
@@ -158,7 +234,7 @@
                     {
                         if ($plain)
                         {
-                            $result .= $value;
+                            $result .= $color_red_light.$value.$color_clear;
                         }
                         else
                         {
@@ -180,7 +256,7 @@
                     {
                         if ($plain)
                         {
-                            $result .= "\"".$value."\"";
+                            $result .= $color_green_light."\"".$value."\"".$color_clear;
                         }
                         else
                         {
@@ -208,7 +284,7 @@
             {
                 if ($plain)
                 {
-                    $result = "null";
+                    $result = $color_cyan."null".$color_clear;
                 }
                 else
                 {
@@ -221,7 +297,7 @@
                 {
                     if ($plain)
                     {
-                        $result = "true";
+                        $result = $color_purple_light."true".$color_clear;
                     }
                     else
                     {
@@ -233,7 +309,7 @@
                 {
                     if ($plain)
                     {
-                        $result = "false";
+                        $result = $color_purple_light."false".$color_clear;
                     }
                     else
                     {
@@ -245,7 +321,7 @@
             {
                 if ($plain)
                 {
-                    $result = $object;
+                    $result = $color_red_light.$object.$color_clear;
                 }
                 else
                 {
@@ -267,7 +343,7 @@
             {
                 if ($plain)
                 {
-                    $result = "\"".$object."\"";
+                    $result = $color_green_light."\"".$object."\"".$color_clear;
                 }
                 else
                 {
@@ -316,9 +392,11 @@
             $header = '';
             if ($title)
             {
-                $header = "--------------------------------------\n";
+                $header = $color_cyan;
+                $header .= "--------------------------------------\n";
                 $header .= (is_bool($title) || $title===null)?$type:$title;
                 $header .= "\n--------------------------------------\n";
+                $header .= $color_clear;
             }
             if (is_string($plain))
             {
