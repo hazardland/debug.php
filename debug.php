@@ -44,7 +44,7 @@
         null/false - no title
         true - variable type as title
         "string" - custom title
-        
+
         $plain parameter
         --------------
         false - html output (default)
@@ -69,7 +69,7 @@
         if ($plain===false && php_sapi_name()==='cli')
         {
             $plain = true;
-        }        
+        }
         if (is_string($plain))
         {
             $color_black = "";
