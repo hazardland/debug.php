@@ -133,3 +133,16 @@ debug ($test, date('Y-m-d H:i:s').": Save plain text to file ", "./test.log");
 And lastly if you are using subl-protocol plugin for sublime (https://github.com/thecotne/subl-protocol) you can unfold debug backtrace and with one click in browser jump on the specific file and line in sublime text editor:
 
 ![](./demo/php-debug-sublime-protocol.png)
+
+To debug in error log use 'error_log' in 3d parameter:
+````PHP
+	debug ($_GET,'GET','error_log');
+````
+To view error log nicely formated use:
+````
+tail -f error_log | grep --line-buffered "\n--" | sed "s/\\\n/\\n/g"
+````
+Or if you want all other error log messages:
+````
+tail -f error_log | sed "s/\\\n/\\n/g"
+````
