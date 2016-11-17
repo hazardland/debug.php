@@ -56,6 +56,13 @@
         if defined comma separated list of allowed ip adresses to debug for
         !defined('debug') - debug for everyone
         const debug = '127.0.0.1,217.07.01.01'; - only clients from this two ips will see debug
+
+
+        if you are logging in error log use to see nicely formated outupt:
+            tail -f error_log | sed "s/\\\n/\\n/g"
+        if you want just debug messages nicely formatted:
+            tail -f error_log | grep --line-buffered "\n--" | sed "s/\\\n/\\n/g"
+
     */
 
     function debug ($object, $title=null, $plain=false, $limit=6, $level=0)
@@ -401,7 +408,14 @@
             }
             if (is_string($plain))
             {
-                file_put_contents ($plain, $header.$result, FILE_APPEND);
+                if ($plain=='error_log')
+                {
+                    error_log ("\n".$header.$result);
+                }
+                else
+                {
+                    file_put_contents ($plain, $header.$result, FILE_APPEND);
+                }
             }
             else
             {
