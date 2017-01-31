@@ -54,7 +54,7 @@
         debug constant
         --------------
         if defined comma separated list of allowed ip adresses to debug for
-        !defined('debug') - debug for everyone
+        !defined('DEBUG') - debug for everyone
         const debug = '127.0.0.1,217.07.01.01'; - only clients from this two ips will see debug
 
 
@@ -67,7 +67,7 @@
 
     function debug ($object, $title=null, $plain=false, $limit=6, $level=0)
     {
-        if (defined('debug') && ((isset($_SERVER['REMOTE_ADDR']) && !(debug==$_SERVER['REMOTE_ADDR'] || strpos(debug,$_SERVER['REMOTE_ADDR'].',')===0 || strpos(debug,','.$_SERVER['REMOTE_ADDR'].',')!==false || strpos(debug,','.$_SERVER['REMOTE_ADDR'])===strlen(debug)-strlen($_SERVER['REMOTE_ADDR'])-1)) || (!isset($_SERVER['REMOTE_ADDR']) && debug===false))
+        if (defined('DEBUG') && ((isset($_SERVER['REMOTE_ADDR']) && !(debug==$_SERVER['REMOTE_ADDR'] || strpos(debug,$_SERVER['REMOTE_ADDR'].',')===0 || strpos(debug,','.$_SERVER['REMOTE_ADDR'].',')!==false || strpos(debug,','.$_SERVER['REMOTE_ADDR'])===strlen(debug)-strlen($_SERVER['REMOTE_ADDR'])-1)) || (!isset($_SERVER['REMOTE_ADDR']) && debug===false))
            )
         {
 
