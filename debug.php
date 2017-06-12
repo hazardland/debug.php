@@ -440,7 +440,7 @@
                 }
             }
             $debug .= "</div>";
-            echo "<div style='box-shadow: 5px 5px 5px #888888;background:#f1f1f1;z-index:9999;position:relative;font-family:dejavu sans mono;font-size:12px;line-height:normal!important;width:550px;border:1px solid grey;padding:3px;margin:10px;'>\n";
+            echo "<div style='box-shadow: 5px 5px 5px #888888;background:#f1f1f1;z-index:9999;position:relative;font-family:dejavu sans mono;font-size:12px;line-height:normal!important;border:1px solid grey;padding:3px;margin:10px;'>\n";
             echo "<div style='background-color:grey;padding:1px;margin-bottom:5px;border:1px solid black;height:14px;overflow:hidden;'>".(($title && !is_bool($title))?$title:$type)."<div id='tree' style='background-color:silver;font-size:9px;cursor:pointer;float:right;border:1px solid black;width:10px;height:10px;text-align:center;padding:0px;overflow:hidden;margin-left:5px' onclick=\"if(this.parentNode.style.height=='14px'){this.parentNode.style.height='';this.innerHTML='-'}else{this.parentNode.style.height='14px';this.innerHTML='+'}\">+</div><a href='subl://".str_replace('\\','/',$node['file']).":".$node['line']."' style='color:silver;text-decoration:none;float:right'>".$file."</a>".$debug."</div>\n";
             echo $result;
             echo "</div>\n";
